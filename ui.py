@@ -3,6 +3,8 @@ from PySide2.QtUiTools import QUiLoader
 from PySide2.QtWidgets import QApplication, QPushButton
 import sys
 
+from backened import backend
+
 
 class App:
     def __init__(self):
@@ -19,4 +21,5 @@ class App:
 
 app = QApplication(sys.argv)
 a = App()
+back = backend(a.ui)
 app.exec_()

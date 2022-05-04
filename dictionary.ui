@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>566</width>
     <height>453</height>
    </rect>
   </property>
@@ -17,7 +17,7 @@
    <widget class="QLabel" name="logo">
     <property name="geometry">
      <rect>
-      <x>730</x>
+      <x>510</x>
       <y>10</y>
       <width>50</width>
       <height>50</height>
@@ -46,12 +46,12 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Search:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="search_area">
     <property name="geometry">
      <rect>
       <x>80</x>
       <y>30</y>
-      <width>631</width>
+      <width>421</width>
       <height>21</height>
      </rect>
     </property>
@@ -59,15 +59,14 @@
    <widget class="QLabel" name="true_2">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>70</y>
+      <x>290</x>
+      <y>60</y>
       <width>41</width>
       <height>21</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>DejaVu Sans</family>
       <pointsize>12</pointsize>
      </font>
     </property>
@@ -87,8 +86,8 @@
    <widget class="QLabel" name="true_3">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>70</y>
+      <x>340</x>
+      <y>60</y>
       <width>31</width>
       <height>21</height>
      </rect>
@@ -114,15 +113,14 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>599</x>
-      <y>370</y>
+      <x>9</x>
+      <y>380</y>
       <width>76</width>
       <height>19</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>DejaVu Sans</family>
       <pointsize>12</pointsize>
      </font>
     </property>
@@ -133,15 +131,14 @@
    <widget class="QLabel" name="dict_size">
     <property name="geometry">
      <rect>
-      <x>680</x>
-      <y>370</y>
+      <x>90</x>
+      <y>380</y>
       <width>104</width>
       <height>19</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>DejaVu Sans</family>
       <pointsize>12</pointsize>
      </font>
     </property>
@@ -152,8 +149,8 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>599</x>
-      <y>400</y>
+      <x>9</x>
+      <y>410</y>
       <width>76</width>
       <height>19</height>
      </rect>
@@ -170,8 +167,8 @@
    <widget class="QLabel" name="tree_size">
     <property name="geometry">
      <rect>
-      <x>680</x>
-      <y>400</y>
+      <x>90</x>
+      <y>410</y>
       <width>104</width>
       <height>19</height>
      </rect>
@@ -185,7 +182,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit">
+   <widget class="QTextEdit" name="add_area">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -224,8 +221,8 @@
    <widget class="QPushButton" name="found">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>70</y>
+      <x>200</x>
+      <y>60</y>
       <width>83</width>
       <height>24</height>
      </rect>
@@ -234,35 +231,82 @@
      <string>Found</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>390</y>
+      <width>33</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>File:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="file">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>390</y>
+      <width>221</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>566</width>
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu_load">
+   <widget class="QMenu" name="menuOptions">
     <property name="title">
-     <string>Load</string>
+     <string>Options</string>
     </property>
+    <addaction name="actionLoad_file"/>
+    <addaction name="actionHelp"/>
+    <addaction name="actionExit"/>
    </widget>
-   <widget class="QMenu" name="menu_help">
-    <property name="title">
-     <string>Help</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menu_exit">
-    <property name="title">
-     <string>Exit</string>
-    </property>
-   </widget>
-   <addaction name="menu_load"/>
-   <addaction name="menu_help"/>
-   <addaction name="menu_exit"/>
+   <addaction name="menuOptions"/>
   </widget>
+  <action name="actionh">
+   <property name="text">
+    <string>h</string>
+   </property>
+  </action>
+  <action name="actionLoad_file">
+   <property name="text">
+    <string>Load file</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="text">
+    <string>Help</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
