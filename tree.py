@@ -256,4 +256,8 @@ class RBTree:
         rightAns = self.height(root.right)
         return max(leftAns, rightAns) + 1
 
-
+    def size(self, root):
+        if root is self.NULL:
+            return 0
+        else:
+            return (self.size(root.left) + 1 + self.size(root.right))

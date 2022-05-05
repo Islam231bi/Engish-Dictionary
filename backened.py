@@ -47,6 +47,7 @@ class backend:
                     count = count + 1
         self.dict_size.setText(str(count))
         self.tree_height.setText(str(self.tree.height(self.tree.root)))
+        self.tree_size.setText(str(self.tree.size(self.tree.root)))
 
     def foundSlot(self):
         search_word = self.search_area.text()
@@ -80,6 +81,10 @@ class backend:
             y = self.tree.height(self.tree.root)
             self.tree_height.setText(str(y))
 
+            # Updating tree size
+            z = self.tree.size(self.tree.root)
+            self.tree_size.setText(str(z))
+
         self.add_area.clear()
 
     def removeWord(self):
@@ -91,6 +96,7 @@ class backend:
             msg.setIcon(QMessageBox.Critical)
             msg.setText("Deleted successfully")
             msg.exec_()
+
             x = int(self.dict_size.text())
             x = x - 1
             self.dict_size.setText(str(x))
@@ -98,6 +104,10 @@ class backend:
             # Updating tree height
             y = self.tree.height(self.tree.root)
             self.tree_height.setText(str(y))
+
+            # Updating tree size
+            z = self.tree.size(self.tree.root)
+            self.tree_size.setText(str(z))
         else:
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
@@ -112,6 +122,8 @@ class backend:
         self.file_label.clear()
         self.dict_size.clear()
         self.file = ""
+
+
 
 
 
