@@ -1,11 +1,13 @@
 from PySide2 import QtGui
 from PySide2.QtWidgets import *
+from tree import RBTree
 
 
 class backend:
     def __init__(self, ui):
         self.ui = ui
         self.file = ""
+        self.tree = RBTree()
 
         self.load = self.ui.findChild(QAction, 'actionLoad_file')
         self.exit_button = self.ui.findChild(QAction, 'actionExit')
@@ -39,13 +41,15 @@ class backend:
             count = 0
             for line in fp:
                 if line != "\n":
+                    self.tree.insertNode(line)
                     count = count + 1
         self.dict_size.setText(str(count) + " words")
+        # print(self.tree.root.val)
 
     def foundSlot(self):
         search_word = self.search_area.text()
         found = 0
-        # call search funtion in red black tree
+        # call search function in red black tree
         if found:
             self.isFound_label.setText("YES")
         else:
