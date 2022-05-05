@@ -239,3 +239,14 @@ class RBTree():
     # Deletion of node
     def delete_node ( self , val ) :
         self.delete_node_helper ( self.root , val )         # Call for deletion
+    # auxiliary function for word looking up
+    def __lookupWord(self, node, key):
+        if node == self.NULL or key == node.val:
+            return node
+
+        if key < node.val:
+            return self.__lookupWord(node.left, key)
+        return self.__lookupWord(node.right, key)
+    # The main looking up function
+    def lookup(self, k):
+        return self.__lookupWord(self.root, k)
