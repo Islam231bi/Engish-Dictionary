@@ -249,20 +249,3 @@ class RBTree:
     def search(self, k):
         return self.searchWithNode(self.root, k)
 
-    def __print_helper(self, node, indent, last):
-        if node != self.NULL:
-            sys.stdout.write(indent)
-            if last:
-                sys.stdout.write("R----")
-                indent += "     "
-            else:
-                sys.stdout.write("L----")
-                indent += "|    "
-
-            s_color = "RED" if node.color == 1 else "BLACK"
-            print(str(node.val) + "(" + s_color + ")")
-            self.__print_helper(node.left, indent, False)
-            self.__print_helper(node.right, indent, True)
-
-    def print_tree(self):
-        self.__print_helper(self.root, "", True)

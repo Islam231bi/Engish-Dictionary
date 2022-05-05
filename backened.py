@@ -44,7 +44,7 @@ class backend:
                     line = line.strip('\n ')
                     self.tree.insertNode(line)
                     count = count + 1
-        self.dict_size.setText(str(count) + " words")
+        self.dict_size.setText(str(count))
 
     def foundSlot(self):
         search_word = self.search_area.text()
@@ -53,7 +53,7 @@ class backend:
             self.isFound_label.setText("YES")
         else:
             self.isFound_label.setText("NO")
-            
+
     def addWord(self):
         word = self.add_area.text()
         found = self.tree.search(word)
@@ -68,6 +68,9 @@ class backend:
             msg.setIcon(QMessageBox.Critical)
             msg.setText("Added successfully")
             msg.exec_()
+            x = int(self.dict_size.text())
+            x = x + 1
+            self.dict_size.setText(str(x))
         self.add_area.clear()
 
     def removeWord(self):
@@ -79,11 +82,15 @@ class backend:
             msg.setIcon(QMessageBox.Critical)
             msg.setText("Deleted successfully")
             msg.exec_()
+            x = int(self.dict_size.text())
+            x = x - 1
+            self.dict_size.setText(str(x))
         else:
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
             msg.setText("Word doesn't exist")
             msg.exec_()
+        self.add_area.clear()
 
     def exit(self):
         self.ui.close()
