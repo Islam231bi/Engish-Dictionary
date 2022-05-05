@@ -20,6 +20,7 @@ class backend:
 
         self.dict_size = self.ui.findChild(QLabel, 'dict_size')
         self.tree_size = self.ui.findChild(QLabel, 'tree_size')
+        self.tree_height = self.ui.findChild(QLabel, 'tree_height')
         self.file_label = self.ui.findChild(QLabel, 'file')
         self.isFound_label = self.ui.findChild(QLabel, 'isFound')
 
@@ -45,6 +46,7 @@ class backend:
                     self.tree.insertNode(line)
                     count = count + 1
         self.dict_size.setText(str(count))
+        self.tree_height.setText(str(self.tree.height(self.tree.root)))
 
     def foundSlot(self):
         search_word = self.search_area.text()
@@ -68,9 +70,16 @@ class backend:
             msg.setIcon(QMessageBox.Critical)
             msg.setText("Added successfully")
             msg.exec_()
+
+            # Updating dict size
             x = int(self.dict_size.text())
             x = x + 1
             self.dict_size.setText(str(x))
+
+            # Updating tree height
+            y = self.tree.height(self.tree.root)
+            self.tree_height.setText(str(y))
+
         self.add_area.clear()
 
     def removeWord(self):
@@ -85,6 +94,10 @@ class backend:
             x = int(self.dict_size.text())
             x = x - 1
             self.dict_size.setText(str(x))
+
+            # Updating tree height
+            y = self.tree.height(self.tree.root)
+            self.tree_height.setText(str(y))
         else:
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)

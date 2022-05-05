@@ -249,3 +249,11 @@ class RBTree:
     def search(self, k):
         return self.searchWithNode(self.root, k)
 
+    def height(self, root):
+        if root is self.NULL:
+            return 0
+        leftAns = self.height(root.left)
+        rightAns = self.height(root.right)
+        return max(leftAns, rightAns) + 1
+
+
