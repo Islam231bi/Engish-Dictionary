@@ -1,3 +1,6 @@
+import sys
+
+
 class Node:
     def __init__(self, val):
         self.val = val  # Value of Node
@@ -233,16 +236,33 @@ class RBTree:
     def delete_node(self, val):
         self.delete_node_helper(self.root, val)  # Call for deletion
 
-        # auxiliary function for word looking up
+    def searchWithNode(self, node, key):
+        if node == self.NULL:
+            return False
+        elif key == node.val:
+            return True
+        elif key < node.val:
+            return self.searchWithNode(node.left, key)
+        else:
+            return self.searchWithNode(node.right, key)
 
-    def __lookupWord(self, node, key):
-        if node == self.NULL or key == node.val:
-            return node
+    def search(self, k):
+        return self.searchWithNode(self.root, k)
 
-        if key < node.val:
-            return self.__lookupWord(node.left, key)
-        return self.__lookupWord(node.right, key)
-        # The main looking up function
+    def __print_helper(self, node, indent, last):
+        if node != self.NULL:
+            sys.stdout.write(indent)
+            if last:
+                sys.stdout.write("R----")
+                indent += "     "
+            else:
+                sys.stdout.write("L----")
+                indent += "|    "
 
-    def lookup(self, k):
-        return self.__lookupWord(self.root, k)
+            s_color = "RED" if node.color == 1 else "BLACK"
+            print(str(node.val) + "(" + s_color + ")")
+            self.__print_helper(node.left, indent, False)
+            self.__print_helper(node.right, indent, True)
+
+    def print_tree(self):
+        self.__print_helper(self.root, "", True)

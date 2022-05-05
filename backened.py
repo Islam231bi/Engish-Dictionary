@@ -41,25 +41,49 @@ class backend:
             count = 0
             for line in fp:
                 if line != "\n":
+                    line = line.strip('\n ')
                     self.tree.insertNode(line)
                     count = count + 1
         self.dict_size.setText(str(count) + " words")
-        # print(self.tree.root.val)
 
     def foundSlot(self):
         search_word = self.search_area.text()
-        found = 0
-        # call search function in red black tree
+        found = self.tree.search(search_word)
         if found:
             self.isFound_label.setText("YES")
         else:
             self.isFound_label.setText("NO")
-
+            
     def addWord(self):
         word = self.add_area.text()
+        found = self.tree.search(word)
+        if found:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Word already exists")
+            msg.exec_()
+        else:
+            self.tree.insertNode(word)
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Added successfully")
+            msg.exec_()
+        self.add_area.clear()
 
     def removeWord(self):
         word = self.add_area.text()
+        found = self.tree.search(word)
+        if found:
+            self.tree.delete_node(word)
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Deleted successfully")
+            msg.exec_()
+        else:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Word doesn't exist")
+            msg.exec_()
 
     def exit(self):
         self.ui.close()
@@ -68,3 +92,6 @@ class backend:
         self.file_label.clear()
         self.dict_size.clear()
         self.file = ""
+
+
+
