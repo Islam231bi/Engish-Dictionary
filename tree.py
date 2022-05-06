@@ -260,4 +260,4 @@ class RBTree:
         if root is self.NULL:
             return 0
         else:
-            return (self.size(root.left) + 1 + self.size(root.right))
+            return self.size(root.left) + 1 + self.size(root.right)

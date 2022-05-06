@@ -19,6 +19,7 @@ class App:
         uifile.close()
         return ui
 
+
 app = QApplication(sys.argv)
 a = App()
 back = backend(a.ui)

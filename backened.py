@@ -50,79 +50,99 @@ class backend:
         self.tree_size.setText(str(self.tree.size(self.tree.root)))
 
     def foundSlot(self):
-        search_word = self.search_area.text()
-        found = self.tree.search(search_word)
-        if found:
-            self.isFound_label.setText("YES")
+        search_word = self.search_area.text().strip()
+        if len(search_word) == 0:
+            self.search_area.clear()
+            self.isFound_label.clear()
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Can't search for empty string")
+            msg.exec_()
         else:
-            self.isFound_label.setText("NO")
+            found = self.tree.search(search_word)
+            if found:
+                self.isFound_label.setText("YES")
+            else:
+                self.isFound_label.setText("NO")
 
     def addWord(self):
-        word = self.add_area.text()
-        found = self.tree.search(word)
-        if found:
+        word = self.add_area.text().strip()
+        if len(word) == 0:
+            self.add_area.clear()
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
-            msg.setText("Word already exists")
+            msg.setText("Can't add empty string")
             msg.exec_()
         else:
-            self.tree.insertNode(word)
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Critical)
-            msg.setText("Added successfully")
-            msg.exec_()
+            found = self.tree.search(word)
+            if found:
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Critical)
+                msg.setText("Word already exists")
+                msg.exec_()
+            else:
+                self.tree.insertNode(word)
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Critical)
+                msg.setText("Added successfully")
+                msg.exec_()
 
-            # Updating dict size
-            x = int(self.dict_size.text())
-            x = x + 1
-            self.dict_size.setText(str(x))
+                # Updating dict size
+                x = int(self.dict_size.text())
+                x = x + 1
+                self.dict_size.setText(str(x))
 
-            # Updating tree height
-            y = self.tree.height(self.tree.root)
-            self.tree_height.setText(str(y))
+                # Updating tree height
+                y = self.tree.height(self.tree.root)
+                self.tree_height.setText(str(y))
 
-            # Updating tree size
-            z = self.tree.size(self.tree.root)
-            self.tree_size.setText(str(z))
-
+                # Updating tree size
+                z = self.tree.size(self.tree.root)
+                self.tree_size.setText(str(z))
         self.add_area.clear()
 
     def removeWord(self):
-        word = self.add_area.text()
-        found = self.tree.search(word)
-        if found:
-            self.tree.delete_node(word)
+        word = self.add_area.text().strip()
+        if len(word) == 0:
+            self.add_area.clear()
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
-            msg.setText("Deleted successfully")
+            msg.setText("Can't remove empty string")
             msg.exec_()
-
-            x = int(self.dict_size.text())
-            x = x - 1
-            self.dict_size.setText(str(x))
-
-            # Updating tree height
-            y = self.tree.height(self.tree.root)
-            self.tree_height.setText(str(y))
-
-            # Updating tree size
-            z = self.tree.size(self.tree.root)
-            self.tree_size.setText(str(z))
         else:
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Critical)
-            msg.setText("Word doesn't exist")
-            msg.exec_()
+            found = self.tree.search(word)
+            if found:
+                self.tree.delete_node(word)
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Critical)
+                msg.setText("Deleted successfully")
+                msg.exec_()
+
+                x = int(self.dict_size.text())
+                x = x - 1
+                self.dict_size.setText(str(x))
+
+                # Updating tree height
+                y = self.tree.height(self.tree.root)
+                self.tree_height.setText(str(y))
+
+                # Updating tree size
+                z = self.tree.size(self.tree.root)
+                self.tree_size.setText(str(z))
+            else:
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Critical)
+                msg.setText("Word doesn't exist")
+                msg.exec_()
         self.add_area.clear()
 
     def exit(self):
         self.ui.close()
 
     def clearSlot(self):
-        self.file_label.clear()
-        self.dict_size.clear()
-        self.file = ""
-
+        self.search_area.clear()
+        self.add_area.clear()
+        self.isFound_label.clear()
 
 
 
