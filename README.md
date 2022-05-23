@@ -1,4 +1,4 @@
-# Engish-Dictionary
+# Engish-Dictionary program
 1 - Download source code 
 
 2 - run `pip install PySide2==5.15.2.1`
